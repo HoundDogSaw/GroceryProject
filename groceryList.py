@@ -84,7 +84,7 @@ bacon = {'bacon': 1}
 sausage = {'sausage': 1}
 
 #List of Staples
-staplesList = {'strawberries': strawberries, 'raspberries': raspberries, 'grapes': grapes, 'lemons': lemons, 'bananas': bananas, 'green_apples': green_apples, 'limes': limes, 'mini_cukes': mini_cukes, 'cherubs': cherubs, 'hot_dogs': hot_dogs, 'bacon': bacon, 'sausage': sausage, 'landjaegers': landjaegers, 'summer_sausage': summer_sausage, 'jalapeno_meunster': jalapeno_meunster, 'feta': feta, 'cheddar': cheddar, 'swiss': swiss, 'mozzarella': mozzarella, 'colby': colby, 'baby_swiss': baby_swiss, 'spreadable_cheese': spreadable_cheese, 'parmesean_block': parmesean_block, 'parmesean_grated': parmesean_grated, 'milk': milk, 'eggs': eggs, 'butter': butter, 'yogurt_tub': yogurt_tub, 'yogurt_pouch': yogurt_pouch, 'yogurt_drink': yogurt_drink, 'yogurt_greek': yogurt_greek, 'sour_cream': sour_cream, 'creamer': creamer, 'cottage_cheese': cottage_cheese, 'orange_juice': orange_juice}
+staplesList = {'strawberries': strawberries, 'raspberries': raspberries, 'grapes': grapes, 'lemons': lemons, 'bananas': bananas, 'green_apples': green_apples, 'limes': limes, 'mini_cukes': mini_cukes, 'cherubs': cherubs, 'hot_dogs': hot_dogs, 'bacon': bacon, 'sausage': sausage, 'landjaegers': landjaegers, 'summer_sausage': summer_sausage, 'jalapeno_meunster': jalapeno_meunster, 'feta': feta, 'cheddar': cheddar, 'swiss': swiss, 'mozzarella': mozzarella, 'colby': colby, 'baby_swiss': baby_swiss, 'spreadable_cheese': spreadable_cheese, 'parmesean_block': parmesean_block, 'parmesean_grated': parmesean_grated, 'milk': milk, 'eggs': eggs, 'butter': butter, 'yogurt_tub': yogurt_tub, 'yogurt_pouch': yogurt_pouch, 'yogurt_drink': yogurt_drink, 'yogurt_greek': yogurt_greek, 'sour_cream': sour_cream, 'creamer': creamer, 'cottage_cheese': cottage_cheese, 'orange_juice': orange_juice, 'waffles': waffles, 'coffee': coffee}
 
 #Departments
 fruit = ['strawberries', 'raspberries', 'grapes', 'lemons', 'limes', 'green apples', 'bananas']
@@ -138,7 +138,7 @@ layout_staples = [[sg.Text('FRUIT', text_color='black')],
             [sg.Checkbox('Landjaegers', key='landjaegers', size=(18, 1)), sg.Checkbox('Summer Sausage', key='summer_sausage', size=(18, 1))],
             [sg.Text('CHEESE', text_color='black')],
             [sg.Checkbox('Jalapeno Meunster', key='jalapeno_meunster', size=(18, 1)), sg.Checkbox('Feta', key='feta', size=(18, 1)), sg.Checkbox('Cheddar', key='cheddar', size=(18, 1))],
-            [sg.Checkbox('Swiss', key='swiss', size=(18, 1)), sg.Checkbox('Mozzarella', key='mozzarella', size=(18, 1)), sg.Checkbox('Colby', key='Colby', size=(18, 1))],
+            [sg.Checkbox('Swiss', key='swiss', size=(18, 1)), sg.Checkbox('Mozzarella', key='mozzarella', size=(18, 1)), sg.Checkbox('Colby', key='colby', size=(18, 1))],
             [sg.Checkbox('Baby Swiss', key='baby_swiss', size=(18, 1)), sg.Checkbox('Spreadable Cheese', key='spreadable_cheese', size=(18, 1)), sg.Checkbox('Parmesean(block)', key='parmesean_block', size=(18, 1))],
             [sg.Checkbox('Parmesean(grated)', key='parmesean_grated', size=(18, 1))],
             [sg.Text('DAIRY', text_color='black')],
