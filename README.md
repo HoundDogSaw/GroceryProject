@@ -1,5 +1,15 @@
 # GroceryProject
 Grocery List program
 
-test.xlsx is the file referenced to start the formatting of the excel spreadsheet.
+listTemplate.xlsx is the file referenced to start the formatting of the excel spreadsheet.
 It is formatted specifically to facilitate the population of the list towards the end of the script
+
+PySimpleGUI
+pandas
+openpyxl
+  -load_workbook
+  -Workbook
+openpyxl.utils.dataframe 
+  -dataframe_to_rows
+openpyxl.styles 
+  -PatternFill, Border, Side, Alignment, Protection, Font
