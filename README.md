@@ -7,9 +7,4 @@ It is formatted specifically to facilitate the population of the list towards th
 PySimpleGUI
 pandas
 openpyxl
-  -load_workbook
-  -Workbook
-openpyxl.utils.dataframe 
-  -dataframe_to_rows
-openpyxl.styles 
-  -PatternFill, Border, Side, Alignment, Protection, Font
+  
