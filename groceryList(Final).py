@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 import PySimpleGUI as sg
 import os, sys, platform
+if platform.system() == 'Windows':
+    import win32api
+    import win32print
+    from win32com import client
+    import psutil
+    import xlwings
+import time
 import pandas as pd
 import openpyxl as op
 import fooddata, layouts
@@ -10,7 +17,7 @@ from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Font
 
 #Menu window parameters
-window = sg.Window('Select menu items:', layouts.layout_menu, default_element_size=(40, 1), size=(600, 600))
+window = sg.Window('Select menu items:', layouts.layout_menu, default_element_size=(40, 1), resizable=True)
 
 #Menu window and menu sorting
 ing_needed = {}
@@ -46,7 +53,7 @@ while True:
         break
 
 #Staples window parameters
-window = sg.Window('Select additional grocery items:', layouts.layout_staples, default_element_size=(40, 1), size=(550, 925))
+window = sg.Window('Select additional grocery items:', layouts.layout_staples, default_element_size=(40, 1), resizable=True)
 
 #Staples window and selection sorting
 while True:
@@ -71,7 +78,7 @@ while True:
         break
 
 #Costco window parameters
-window = sg.Window('Select items from CostCo:', layouts.layout_costco, default_element_size=(40, 1), size=(550, 240))
+window = sg.Window('Select items from CostCo:', layouts.layout_costco, default_element_size=(40, 1), resizable=True)
 
 #CostCo window and selection sorting
 while True:
@@ -375,11 +382,33 @@ wb.save('testGroceryList.xlsx')
 wb.close()
 
 #Converts .xlsx document to .pdf document
-os.system('libreoffice --headless --convert-to pdf:calc_pdf_Export --outdir /home/pi/Programs/Grocery_List/ /home/pi/Programs/Grocery_List/testGroceryList.xlsx')
+'''os.system('libreoffice --headless --convert-to pdf:calc_pdf_Export --outdir /home/pi/Programs/Grocery_List/ /home/pi/Programs/Grocery_List/testGroceryList.xlsx')'''
 
 #This will print the list of ingredients in grocery list form
-'''os.system('lpr -P HP_Officejet_Pro_8620_728EA3_ testGroceryList.pdf')'''
+if platform.system() == 'Linux':
+    os.system('libreoffice --headless --convert-to pdf:calc_pdf_Export --outdir /home/pi/Programs/Grocery_List/ /home/pi/Programs/Grocery_List/testGroceryList.xlsx')
+    os.system('lpr -P HP_Officejet_Pro_8620_728EA3_ testGroceryList.pdf')
+elif platform.system() == 'Windows':
+    app = client.DispatchEx("Excel.Application")
+    app.Interactive = False
+    app.Visible = False
+    Workbook = app.Workbooks.Open(r'C:\Users\timhoff\Desktop\Personal\GroceryProject-Grocery-List-1.0\GroceryProject-Grocery-List-1.0\testGroceryList.xlsx')
+    try:
+        Workbook.ActiveSheet.ExportAsFixedFormat(0, r'C:\Users\timhoff\Desktop\Personal\GroceryProject-Grocery-List-1.0\GroceryProject-Grocery-List-1.0\testGroceryList.pdf')
+    except Exception as e:
+        print("Failed to convert in PDF format.Please confirm environment meets all the requirements  and try again")
+        print(str(e))
+    finally:
+        #win32api.ShellExecute (0,"print",r'C:\Users\timhoff\Desktop\Personal\GroceryProject-Grocery-List-1.0\GroceryProject-Grocery-List-1.0\testGroceryList.pdf', win32print.GetDefaultPrinter(),".",0)'''
+        os.startfile(r'C:\Users\timhoff\Desktop\Personal\GroceryProject-Grocery-List-1.0\GroceryProject-Grocery-List-1.0\testGroceryList.pdf', "print")
+        time.sleep(5)
+        for p in psutil.process_iter(): #Close Acrobat after printing the PDF
+            if 'AcroRd' in str(p):
+                p.kill()
+        Workbook.Close()
+'''else platform.system() == 'Darwin':
+    continue'''
 
 #This removes temporary files once the script completes
-os.remove('testGroceryList.xlsx')
-'''os.remove('testGroceryList.pdf')'''
+'''os.remove('testGroceryList.xlsx')
+os.remove('testGroceryList.pdf')'''
